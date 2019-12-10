@@ -57,7 +57,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="35"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -70,7 +71,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Income" />
+                android:text="Income ($)" />
 
             <EditText
                 android:id="@+id/incomeEdit"
@@ -78,7 +79,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="80000"/>
         </TableRow>
 
         <TableRow
@@ -92,7 +94,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Portfolio Value" />
+                android:text="Portfolio Value ($)" />
 
             <EditText
                 android:id="@+id/portfolioEdit"
@@ -100,7 +102,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="20000"/>
         </TableRow>
 
         <TableRow
@@ -114,7 +117,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Savings Rate" />
+                android:text="Savings Rate (%)" />
 
             <EditText
                 android:id="@+id/savingsEdit"
@@ -122,7 +125,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="50"/>
         </TableRow>
 
         <TableRow
@@ -153,7 +157,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Stocks" />
+                android:text="Stocks (%)" />
 
             <EditText
                 android:id="@+id/stocksEdit"
@@ -161,7 +165,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="80"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -174,7 +179,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Bonds" />
+                android:text="Bonds (%)" />
 
             <EditText
                 android:id="@+id/bondsEdit"
@@ -182,7 +187,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="15"/>
         </TableRow>
 
         <TableRow
@@ -196,7 +202,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Cash" />
+                android:text="Cash (%)" />
 
             <EditText
                 android:id="@+id/cashEdit"
@@ -204,7 +210,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="5"/>
         </TableRow>
 
         <TableRow
@@ -219,7 +226,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Stock Annual Return" />
+                android:text="Stock Annual Return (%)" />
 
             <EditText
                 android:id="@+id/stocksReturnEdit"
@@ -227,7 +234,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberSigned|numberDecimal"
+                android:text="5"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -240,7 +248,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Bond Annual Return" />
+                android:text="Bond Annual Return (%)" />
 
             <EditText
                 android:id="@+id/bondsReturnEdit"
@@ -248,7 +256,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberSigned|numberDecimal"
+                android:text="2"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
@@ -261,7 +270,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Inflation Rate" />
+                android:text="Inflation Rate (%)" />
 
             <EditText
                 android:id="@+id/inflationEdit"
@@ -269,7 +278,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="numberSigned|numberDecimal"
+                android:text="-3"/>
+            />
         </TableRow>
 
         <TableRow
@@ -351,7 +362,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Net Worth" />
+                android:text="Net Worth ($)" />
 
             <EditText
                 android:id="@+id/worthEdit"
@@ -359,11 +370,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:inputType="number" />
+                android:inputType="number"
+                android:text="1000000"/>
+            />
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:id="@+id/expenseRow"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/expenseTxt"
@@ -372,7 +387,7 @@
                 android:layout_column="1"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Expected Annual Expenses" />
+                android:text="Expected Annual Expenses ($)" />
 
             <EditText
                 android:id="@+id/expenseEdit"
