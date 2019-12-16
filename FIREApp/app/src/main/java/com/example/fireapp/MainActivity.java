@@ -2,6 +2,7 @@ package com.example.fireapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -16,9 +17,16 @@ import android.widget.RadioGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 import org.w3c.dom.Text;
 
+import java.lang.annotation.Target;
+import java.time.Year;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,17 +34,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //Interact with inputs
-        EditText ageEdit = (EditText) findViewById(R.id.ageEdit);
+        final EditText ageEdit = (EditText) findViewById(R.id.ageEdit);
         final EditText incomeEdit = (EditText) findViewById(R.id.incomeEdit);
-        EditText portfolioEdit = (EditText) findViewById(R.id.portfolioEdit);
-        EditText savingsEdit = (EditText) findViewById(R.id.savingsEdit);
+        final EditText portfolioEdit = (EditText) findViewById(R.id.portfolioEdit);
+        final EditText savingsEdit = (EditText) findViewById(R.id.savingsEdit);
 
-        EditText stocksEdit = (EditText) findViewById(R.id.stocksEdit);
-        EditText bondsEdit = (EditText) findViewById(R.id.bondsEdit);
-        EditText cashEdit = (EditText) findViewById(R.id.cashEdit);
-        EditText stocksReturnEdit = (EditText) findViewById(R.id.stocksReturnEdit);
-        EditText bondsReturnEdit = (EditText) findViewById(R.id.bondsReturnEdit);
-        EditText inflationEdit = (EditText) findViewById(R.id.inflationEdit);
+        final EditText stocksEdit = (EditText) findViewById(R.id.stocksEdit);
+        final EditText bondsEdit = (EditText) findViewById(R.id.bondsEdit);
+        final EditText cashEdit = (EditText) findViewById(R.id.cashEdit);
+        final EditText stocksReturnEdit = (EditText) findViewById(R.id.stocksReturnEdit);
+        final EditText bondsReturnEdit = (EditText) findViewById(R.id.bondsReturnEdit);
+        final EditText inflationEdit = (EditText) findViewById(R.id.inflationEdit);
 
         RadioGroup goalGroup = (RadioGroup) findViewById(R.id.goalGroup);
         RadioButton worthBtn = (RadioButton) findViewById(R.id.worthBtn);
@@ -122,12 +130,77 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        calcBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        calcBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+
+                int age = Integer.parseInt(ageEdit.getText().toString());
+                int income = Integer.parseInt(incomeEdit.getText().toString());
+                int portfolio = Integer.parseInt(portfolioEdit.getText().toString());
+                int savings = Integer.parseInt(savingsEdit.getText().toString());
+
+                int stocks = Integer.parseInt(stocksEdit.getText().toString());
+                int bonds = Integer.parseInt(bondsEdit.getText().toString());
+                int cash = Integer.parseInt(cashEdit.getText().toString());
+
+                int stockReturn = Integer.parseInt(stocksReturnEdit.getText().toString());
+                int bondReturn = Integer.parseInt(bondsReturnEdit.getText().toString());
+                int inflation = Integer.parseInt(inflationEdit.getText().toString());
+
+                int worth = Integer.parseInt(worthEdit.getText().toString());
+                int expense = (int)Double.parseDouble(expenseEdit.getText().toString());
+
+                int targetAmount = worth;
+
+                if(expenseRow.getVisibility() == View.VISIBLE) {
+                    targetAmount = expense * 25;
+                }
+
+
+                double growthRate = ((stocks*stockReturn) + (bonds*bondReturn) + (cash*inflation))/100.0/100.0;
+                Log.d("HAHA", Double.toString(growthRate));
+
+                int annualSavings = income*(savings/100);
+
+                double eoySavings = portfolio;
+
+//                int years = 0;
+
+
+//                while(eoySavings<targetAmount) {
+//                    eoySavings = eoySavings * (1 + growthRate) + annualSavings;
+//                    Log.d("HAHA", Double.toString(eoySavings));
 //
-//            }
-//        });
+//                    years++;
+//
+//                }
+//
+//
+//                String expectedAge = Integer.toString(age+years);
+//                String target = String.format("%.2f", eoySavings);
+//
+
+
+
+                Intent startIntent = new Intent(getApplicationContext(), ResultActivity.class);
+                startIntent.putExtra("com.example.fireapp.EOY",eoySavings);
+                startIntent.putExtra("com.example.fireapp.TARGET",targetAmount);
+                startIntent.putExtra("com.example.fireapp.GROWTH",growthRate);
+                startIntent.putExtra("com.example.fireapp.SAVE",annualSavings);
+                startIntent.putExtra("com.example.fireapp.AGE",age);
+
+
+
+
+                startActivity(startIntent);
+            }
+        });
+
+
+
+
 
 
 
