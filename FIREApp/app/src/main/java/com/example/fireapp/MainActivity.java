@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         Button calcBtn = (Button) findViewById(R.id.calcBtn);
 
         //Auto Calc Expenses
-        double currentExpense = Integer.parseInt(incomeEdit.getText().toString())*(1-Integer.parseInt(savingsEdit.getText().toString())/100.0);
-        expenseEdit.setText(Double.toString(currentExpense));
+        int currentExpense = (int) (Integer.parseInt(incomeEdit.getText().toString())*(1-Integer.parseInt(savingsEdit.getText().toString())/100.0));
+        expenseEdit.setText(Integer.toString(currentExpense));
 
 
         //Set input min max class
@@ -108,6 +108,52 @@ public class MainActivity extends AppCompatActivity {
         bondsReturnEdit.setFilters(new InputFilter[]{ new InputFilterMinMax("-100", "100")});
         inflationEdit.setFilters(new InputFilter[]{ new InputFilterMinMax("-100", "100")});
 
+        incomeEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(!incomeEdit.getText().toString().equals("")) {
+                    int currentExpense = (int) (Integer.parseInt(incomeEdit.getText().toString())*(1-Integer.parseInt(savingsEdit.getText().toString())/100.0));
+                    expenseEdit.setText(Integer.toString(currentExpense));
+
+                }
+            }
+        });
+
+        savingsEdit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                if(!savingsEdit.getText().toString().equals("")) {
+                    int currentExpense = (int) (Integer.parseInt(incomeEdit.getText().toString())*(1-Integer.parseInt(savingsEdit.getText().toString())/100.0));
+                    expenseEdit.setText(Integer.toString(currentExpense));
+
+                }
+            }
+        });
+
         //Change input box with radio button
         worthBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,6 +181,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                try {
+                    //  Block of code to try
+
 
                 int age = Integer.parseInt(ageEdit.getText().toString());
                 int income = Integer.parseInt(incomeEdit.getText().toString());
@@ -150,21 +199,26 @@ public class MainActivity extends AppCompatActivity {
                 int inflation = Integer.parseInt(inflationEdit.getText().toString());
 
                 int worth = Integer.parseInt(worthEdit.getText().toString());
-                int expense = (int)Double.parseDouble(expenseEdit.getText().toString());
+                int expense = Integer.parseInt(expenseEdit.getText().toString());
 
                 int targetAmount = worth;
+                int old = 0;
 
                 if(expenseRow.getVisibility() == View.VISIBLE) {
                     targetAmount = expense * 25;
+                    if(worth>age) {
+                        old = worth;
+                    }
                 }
 
 
-                double growthRate = ((stocks*stockReturn) + (bonds*bondReturn) + (cash*inflation))/100.0/100.0;
+                double growthRate = ((stocks*stockReturn) + (bonds*bondReturn) + (cash*inflation))/(stocks+bonds+cash)/100.0;
                 Log.d("HAHA", Double.toString(growthRate));
 
-                int annualSavings = income*(savings/100);
+                double annualSavings = income*(savings/100.0);
 
-                double eoySavings = portfolio;
+
+                int eoySavings = portfolio;
 
 //                int years = 0;
 
@@ -190,11 +244,17 @@ public class MainActivity extends AppCompatActivity {
                 startIntent.putExtra("com.example.fireapp.GROWTH",growthRate);
                 startIntent.putExtra("com.example.fireapp.SAVE",annualSavings);
                 startIntent.putExtra("com.example.fireapp.AGE",age);
+                startIntent.putExtra("com.example.fireapp.OLD",old);
+
 
 
 
 
                 startActivity(startIntent);
+                }
+                catch(Exception e) {
+                    //  Block of code to handle errors
+                }
             }
         });
 
